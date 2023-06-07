@@ -1,5 +1,5 @@
-main.c:66:5:main	1
-main.c:111:6:SystemClock_Config	4
-main.c:155:13:MX_TIM1_Init	5
-main.c:225:13:MX_GPIO_Init	1
-main.c:245:6:Error_Handler	1
+main.c:80:5:main	1
+main.c:125:6:SystemClock_Config	3
+main.c:162:13:MX_TIM2_Init	4
+main.c:211:13:MX_GPIO_Init	1
+main.c:231:6:Error_Handler	1
