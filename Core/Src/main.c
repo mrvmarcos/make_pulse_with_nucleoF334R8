@@ -103,8 +103,15 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  TIM2->CCR1 = 100; /* this overwrites directly the length of the pulse even if is set to another time, so it is not necessary to og to .ioc all the time */
+  //TIM2->CCR1 = 100; /* this overwrites directly the length of the pulse even if is set to another time, so it is not necessary to og to .ioc all the time */
+
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); // If we want to use the moving pulse, we should add at the end of the function _IT
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+
+    // Start Timer 2 PWM generation for Channel 2
+
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -189,10 +196,16 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 250;
+  sConfigOC.Pulse = 250-1;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.Pulse = 550-1;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
